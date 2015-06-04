@@ -42,11 +42,11 @@ To run this project in your development machine, follow these steps:
 
     `./manage.py migrate`
 
-4. If everything is alright, you should be able to start the Django development server:
+5. If everything is alright, you should be able to start the Django development server:
 
     `./manage.py runserver`
 
-5. Open your browser and go to http://127.0.0.1:8000, you will be greeted with a welcome page.
+6. Open your browser and go to http://127.0.0.1:8000, you will be greeted with a welcome page.
 
 
 ## Deploying to OpenShift
@@ -56,7 +56,7 @@ To follow the next steps, you need to be logged in to an OpenShift cluster and h
 
 ### Using an application template
 
-The directory `openshift/templates/` contains OpenShift application template files that you can add you your OpenShift project with:
+The directory `openshift/templates/` contains OpenShift application templates that you can add to your OpenShift project with:
 
     osc create -f openshift/templates/<TEMPLATE_NAME>.json
 
