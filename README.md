@@ -104,6 +104,18 @@ Service "django-ex" created at 172.30.16.213 with port mappings 8080.
 You can access your application by browsing to the service's IP address and port.
 
 
+## Logs
+
+By default your Django application is served with gunicorn and configured to output its access log to stderr.
+You can change this and more gunicorn settings using the `gunicorn_conf.py` file, by setting variables as documented [here](http://docs.gunicorn.org/en/latest/settings.html).
+You can look at the output (stdout and stderr) of a given pod with this command:
+
+    osc get pods         # list all pods in your project
+    osc logs <pod-name>
+
+This can be useful to observe the correct functioning of your application.
+
+
 ## Special files in this repository
 
 Apart from the regular files created by Django (`project/*`, `welcome/*`, `manage.py`), this repository contains:
