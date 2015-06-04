@@ -56,13 +56,13 @@ To follow the next steps, you need to be logged in to an OpenShift cluster and h
 
 ### Using an application template
 
-The directory `openshift/` contains OpenShift application template files that you can add you your OpenShift project with:
+The directory `openshift/templates/` contains OpenShift application template files that you can add you your OpenShift project with:
 
-    osc create -f openshift/<TEMPLATE_NAME>.json
+    osc create -f openshift/templates/<TEMPLATE_NAME>.json
 
-The template `django-source.json` contains just a minimal set of components to get your Django application into OpenShift.
+The template `django.json` contains just a minimal set of components to get your Django application into OpenShift.
 
-The template `django-source-postgresql.json` contains all of the components from `django-source.json`, plus a PostgreSQL database service and an Image Stream for the Python base image.
+The template `django-postgresql.json` contains all of the components from `django.json`, plus a PostgreSQL database service and an Image Stream for the Python base image.
 
 After adding your templates, you can go to your OpenShift web console, browse to your project and click the create button. Create a new app from one of the templates that you have just added.
 
@@ -114,9 +114,9 @@ Apart from the regular files created by Django (`project/*`, `welcome/*`, `manag
     ├── assemble   - executed to produce a Docker image with your code and dependencies during build
     └── run        - executed to start your app during deployment
 
-openshift/         - application templates for OpenShift
-
-scripts/           - helper scripts to automate some tasks
+openshift/         - OpenShift-specific files
+├── scripts        - helper scripts
+└── templates      - application templates
 
 gunicorn_conf.py   - configuration for the gunicorn HTTP server
 
