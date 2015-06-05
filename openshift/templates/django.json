@@ -231,7 +231,7 @@
     },
     {
       "name": "DJANGO_SECRET_KEY",
-      "description": "Django secret key",
+      "description": "Set this to a long random string",
       "generate": "expression",
       "from": "[\\w]{50}"
     }

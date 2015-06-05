@@ -125,7 +125,7 @@ You can access your application by browsing to the service's IP address and port
 ## Logs
 
 By default your Django application is served with gunicorn and configured to output its access log to stderr.
-You can look at the output (stdout and stderr) of a given pod with this command:
+You can look at the combined stdout and stderr of a given pod with this command:
 
     osc get pods         # list all pods in your project
     osc logs <pod-name>
@@ -138,6 +138,10 @@ This can be useful to observe the correct functioning of your application.
 ### APP_CONFIG
 
 You can fine tune the gunicorn configuration through the environment variable `APP_CONFIG` that, when set, should point to a config file as documented [here](http://docs.gunicorn.org/en/latest/settings.html).
+
+### DJANGO_SECRET_KEY
+
+When using one of the templates provided in this repository, this environment variable has its value automatically generated. For security purposes, make sure to set this to a random string as documented [here](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-SECRET_KEY).
 
 
 ## One-off command execution
