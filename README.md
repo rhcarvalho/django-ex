@@ -136,6 +136,62 @@ You can look at the output (stdout and stderr) of a given pod with this command:
 This can be useful to observe the correct functioning of your application.
 
 
+## One-off command execution
+
+At times you might want to manually execute some command in the context of a running application in OpenShift.
+You can drop into a Python shell for debugging, create a new user for the Django Admin interface, or perform any other task.
+
+You can do all that by using regular CLI commands from OpenShift.
+To make it a little more convenient, you can use the script `openshift/scripts/run-in-container.sh` that wraps some calls to `osc`.
+In the future, the `osc` CLI tool might incorporate changes
+that make this script obsolete.
+
+Here is how you would run a command in a pod specified by label:
+
+1. Inpect the output of the command below to find the name of a pod that matches a given label:
+
+        osc get pods -l <your-label-selector>
+
+2. Open a shell in the pod of your choice:
+
+        osc exec -p <pod-name> -it -- bash
+
+3. Because of how `kubectl exec` and `osc exec` work right now, your current working directory is root (/). Change it to where your code lives:
+
+        cd $HOME
+
+4. Because of how the images produced with CentOS and RHEL work currently, you need to manually enable any Software Collections you need to use:
+
+        source scl_source enable python33
+
+5. Finally, execute any command that you need and exit the shell.
+
+Related GitHub issues:
+1. https://github.com/GoogleCloudPlatform/kubernetes/issues/8876
+2. https://github.com/GoogleCloudPlatform/kubernetes/issues/7770
+3. https://github.com/openshift/origin/issues/2001
+
+
+The wrapper script combines the steps above into one. You can use it like this:
+
+    ./run-in-container.sh ./manage.py migrate          # manually migrate the database
+                                                       # (done for you as part of the deployment process)
+    ./run-in-container.sh ./manage.py createsuperuser  # create a user to access Django Admin
+    ./run-in-container.sh ./manage.py shell            # open a Python shell in the context of your app
+
+If your Django pods are labeled with a name other than "django", you can use:
+
+    POD_NAME=name ./run-in-container.sh ./manage.py check
+
+If there is more than one replica, you can also specify a POD by index:
+
+    POD_INDEX=1 ./run-in-container.sh ./manage.py shell
+
+Or both together:
+
+    POD_NAME=frontend POD_INDEX=2 ./run-in-container.sh ./manage.py shell
+
+
 ## Data persistence
 
 You can deploy this application without a configured database in your OpenShift project, in which case Django will use a temporary SQLite database that will live inside your application's container, and persist only until you redeploy your application.
