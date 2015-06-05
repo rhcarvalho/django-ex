@@ -24,6 +24,26 @@ From this initial state you can:
 * install more Python libraries and add them to the `requirements.txt` file
 
 
+## Special files in this repository
+
+Apart from the regular files created by Django (`project/*`, `welcome/*`, `manage.py`), this repository contains:
+
+```
+.sti/
+└── bin/           - scripts used by source-to-image
+    ├── assemble   - executed to produce a Docker image with your code and dependencies during build
+    └── run        - executed to start your app during deployment
+
+openshift/         - OpenShift-specific files
+├── scripts        - helper scripts
+└── templates      - application templates
+
+gunicorn_conf.py   - configuration for the gunicorn HTTP server
+
+requirements.txt   - list of dependencies
+```
+
+
 ## Local development
 
 To run this project in your development machine, follow these steps:
@@ -114,26 +134,6 @@ You can look at the output (stdout and stderr) of a given pod with this command:
     osc logs <pod-name>
 
 This can be useful to observe the correct functioning of your application.
-
-
-## Special files in this repository
-
-Apart from the regular files created by Django (`project/*`, `welcome/*`, `manage.py`), this repository contains:
-
-```
-.sti/
-└── bin/           - scripts used by source-to-image
-    ├── assemble   - executed to produce a Docker image with your code and dependencies during build
-    └── run        - executed to start your app during deployment
-
-openshift/         - OpenShift-specific files
-├── scripts        - helper scripts
-└── templates      - application templates
-
-gunicorn_conf.py   - configuration for the gunicorn HTTP server
-
-requirements.txt   - list of dependencies
-```
 
 
 ## Data persistence
