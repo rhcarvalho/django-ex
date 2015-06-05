@@ -38,8 +38,6 @@ openshift/         - OpenShift-specific files
 ├── scripts        - helper scripts
 └── templates      - application templates
 
-gunicorn_conf.py   - configuration for the gunicorn HTTP server
-
 requirements.txt   - list of dependencies
 ```
 
@@ -127,13 +125,19 @@ You can access your application by browsing to the service's IP address and port
 ## Logs
 
 By default your Django application is served with gunicorn and configured to output its access log to stderr.
-You can change this and more gunicorn settings using the `gunicorn_conf.py` file, by setting variables as documented [here](http://docs.gunicorn.org/en/latest/settings.html).
 You can look at the output (stdout and stderr) of a given pod with this command:
 
     osc get pods         # list all pods in your project
     osc logs <pod-name>
 
 This can be useful to observe the correct functioning of your application.
+
+
+## Special environment variables
+
+### APP_CONFIG
+
+You can fine tune the gunicorn configuration through the environment variable `APP_CONFIG` that, when set, should point to a config file as documented [here](http://docs.gunicorn.org/en/latest/settings.html).
 
 
 ## One-off command execution

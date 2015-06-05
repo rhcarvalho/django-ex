@@ -227,8 +227,7 @@
     },
     {
       "name": "APP_CONFIG",
-      "description": "Relative path to Gunicorn configuration file (optional)",
-      "value": "gunicorn_conf.py"
+      "description": "Relative path to Gunicorn configuration file (optional)"
     },
     {
       "name": "DJANGO_SECRET_KEY",
