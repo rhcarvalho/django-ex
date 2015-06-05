@@ -182,10 +182,6 @@
                     "value": "${DATABASE_PASSWORD}"
                   },
                   {
-                    "name": "APP_MODULE",
-                    "value": "${APP_MODULE}"
-                  },
-                  {
                     "name": "APP_CONFIG",
                     "value": "${APP_CONFIG}"
                   },
@@ -326,11 +322,6 @@
       "description": "Database user password",
       "generate": "expression",
       "from": "[a-zA-Z0-9]{16}"
-    },
-    {
-      "name": "APP_MODULE",
-      "description": "Python dotted path to your Django WSGI application",
-      "value": "project.wsgi"
     },
     {
       "name": "APP_CONFIG",

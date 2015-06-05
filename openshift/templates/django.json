@@ -160,10 +160,6 @@
                     "value": "${DATABASE_PASSWORD}"
                   },
                   {
-                    "name": "APP_MODULE",
-                    "value": "${APP_MODULE}"
-                  },
-                  {
                     "name": "APP_CONFIG",
                     "value": "${APP_CONFIG}"
                   },
@@ -228,11 +224,6 @@
       "name": "BUILDER_IMAGE_STREAM",
       "description": "Image Stream of the builder image",
       "value": "python-33-centos7"
-    },
-    {
-      "name": "APP_MODULE",
-      "description": "Python dotted path to your Django WSGI application",
-      "value": "project.wsgi"
     },
     {
       "name": "APP_CONFIG",
